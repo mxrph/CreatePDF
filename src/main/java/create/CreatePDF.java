@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.stream.Stream;
 
 import com.itextpdf.text.BadElementException;
@@ -21,7 +22,10 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
 public class CreatePDF {
-
+		
+    public CreatePDF() {
+    	
+    }
     public void Create(String numberpdf) throws IOException {
       	
     	Document document = new Document(); //создание класса Document
@@ -118,7 +122,7 @@ public class CreatePDF {
 		//добавление таблицы
 		 PdfPTable table = new PdfPTable(4); //создание таблицы с 4 столбцами
 		 addHeader(table);
-		 addRows(table);
+		 addRows(table, times);
 		 
 		 try {
 			document.add(table);
@@ -129,7 +133,11 @@ public class CreatePDF {
 	    document.close(); //закрытие и сохранение документа PDF
     }
     
-private void addRows(PdfPTable table) {
+private void addRows(PdfPTable table,BaseFont font) {
+		Phrase  phrase1 = new Phrase(Calc.NumberGet,new Font(font));
+		Phrase  phrase2 = new Phrase(Calc.GroupGet,new Font(font));
+		Phrase  phrase3 = new Phrase(Calc.FIOGet,new Font(font));
+		Phrase  phrase4 = new Phrase(Calc.PointsGet,new Font(font));
 		
 		//заполнение таблицы вводимыми значения в текстовые поля на главной форме
 		String cell1 = Calc.NumberGet;
@@ -137,10 +145,10 @@ private void addRows(PdfPTable table) {
 		String cell3 = Calc.FIOGet;
 		String cell4 = Calc.PointsGet;
 				
-		table.addCell(cell1);
-	    table.addCell(cell2);
-	    table.addCell(cell3);
-	    table.addCell(cell4);
+		table.addCell(phrase1);
+	    table.addCell(phrase2);
+	    table.addCell(phrase3);
+	    table.addCell(phrase4);
 		
 	    //выше должен быть текст на русском языке, как его вывести можно посмотреть в справке.
 	}
