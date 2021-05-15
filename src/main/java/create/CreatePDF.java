@@ -5,7 +5,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.stream.Stream;
 
 import com.itextpdf.text.BadElementException;
@@ -22,10 +21,7 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
 public class CreatePDF {
-		
-    public CreatePDF() {
-    	
-    }
+
     public void Create(String numberpdf) throws IOException {
       	
     	Document document = new Document(); //создание класса Document
